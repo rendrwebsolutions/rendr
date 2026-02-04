@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,74 +10,40 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #b3f2fd;
+      background: #f7feff;
       color: #111;
       line-height: 1.6;
     }
 
-    /* HEADER / HERO */
+    /* HEADER */
     header {
-      padding: 60px 20px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 20px 40px;
     }
 
-    header::before {
-      content: "";
-      position: absolute;
-      top: -100px;
-      left: -100px;
-      width: 300px;
-      height: 300px;
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: #5FE3E6;
-      border-radius: 50%;
-      opacity: 0.25;
-      animation: float 8s ease-in-out infinite;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      bottom: -120px;
-      right: -120px;
-      width: 350px;
-      height: 350px;
-      background: #5FE3E6;
-      border-radius: 50%;
-      opacity: 0.2;
-      animation: float 10s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(20px); }
-      100% { transform: translateY(0); }
+      border-radius: 999px;
+      padding: 10px 18px;
     }
 
     .logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #5FE3E6;
-  color: #111;
-  font-size: 36px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  padding: 18px 26px;
-  border-radius: 999px;
-}
+      font-size: 26px;
+      font-weight: bold;
+      color: #000;
+      letter-spacing: 0.5px;
+    }
 
-
-    .intro-card {
-      max-width: 520px;
-      margin: 30px auto 0;
-      background: #faf8f8;
-      padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      position: relative;
-      z-index: 1;
+    /* HERO SMALL */
+    .hero {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards;
     }
 
     section {
@@ -88,46 +53,58 @@
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     /* CARDS */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
+      gap: 24px;
     }
 
     .card {
-  background: #ffffff;
-  padding: 28px;
-  border-radius: 14px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-  border: 1px solid rgba(95, 227, 230, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+      background: #ffffff;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      opacity: 0;
+      transform: translateY(25px);
+      transition: box-shadow 0.3s ease;
+    }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-}
+    .card:hover {
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
 
     /* CTA */
     .cta {
       background: #e8fdff;
       text-align: center;
       padding: 60px 20px;
+      border-radius: 20px;
+      opacity: 0;
+      transform: translateY(25px);
     }
 
-    .cta a {
+    .cta a,
+    .cta span {
       display: inline-block;
-      margin-top: 20px;
-      padding: 14px 28px;
+      margin-top: 18px;
+      padding: 14px 26px;
       background: #111;
       color: #ffffff;
-      text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .copied {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #333;
+      display: none;
     }
 
     footer {
@@ -136,35 +113,58 @@
       font-size: 14px;
       color: #555;
     }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .show {
+      animation: fadeUp 0.8s ease forwards;
+    }
   </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">rendr.</div>
-
-  <div class="intro-card">
-    <p>
-      We build clean, simple websites that help small businesses get found online.
-    </p>
+  <div class="logo-wrap">
+    <div class="logo">rendr.</div>
   </div>
 </header>
+
+<div class="hero">
+  <p>
+    We build clean, simple websites that help small businesses look professional
+    and make it easier for customers to reach them.
+  </p>
+</div>
+
+<section>
+  <h2>What We Do</h2>
+  <p>
+    We help small businesses get online or improve their existing websites.
+    Clear design, fast loading, and mobile-friendly.
+  </p>
+</section>
 
 <section>
   <h2>Our Services</h2>
   <div class="cards">
-    <div class="card">
+    <div class="card"> 
       <h3>Business Websites</h3>
-      <p>Clear info sites with services, location, and contact details.</p>
+      <p>Simple info websites with services, location, and contact details.</p>
     </div>
     <div class="card">
-      <h3>Website Redesign</h3>
-      <p>Modernize outdated websites with a clean new look.</p>
+      <h3>Website Improvements</h3>
+      <p>Updates to design, layout, and mobile responsiveness.</p>
     </div>
     <div class="card">
       <h3>Mobile Friendly</h3>
-      <p>Optimized for phones, tablets, and desktops.</p>
+      <p>Websites that work smoothly on phones and desktops.</p>
     </div>
   </div>
 </section>
@@ -173,31 +173,61 @@
   <h2>How It Works</h2>
   <div class="cards">
     <div class="card">
-      <h3>1. Contact Us</h3>
-      <p>Tell us about your business and goals.</p>
+      <h3>1. Reach Out</h3>
+      <p>Tell us about your business and what you need.</p>
     </div>
     <div class="card">
       <h3>2. We Build</h3>
-      <p>We design and build your website efficiently.</p>
+      <p>We design and improve your site with clean and simple layout.</p>
     </div>
     <div class="card">
       <h3>3. Go Live</h3>
-      <p>Your site goes online and customers can find you.</p>
+      <p>Your site is ready and customers can find you online.</p>
     </div>
   </div>
 </section>
 
 <section class="cta">
   <h2>Let’s Get Your Business Online</h2>
-  <p>Contact us to get started.</p>
+
   <a href="mailto:rendr.websolutions@gmail.com">
     rendr.websolutions@gmail.com
   </a>
+
+  <br>
+
+  <span onclick="copyPhone()">+63 933 519 2442</span>
+  <div class="copied" id="copiedText">Phone number copied to clipboard</div>
 </section>
 
 <footer>
   © 2026 Rendr. All rights reserved.
 </footer>
 
+<script>
+  function copyPhone() {
+    navigator.clipboard.writeText("+639335192442");
+    const text = document.getElementById("copiedText");
+    text.style.display = "block";
+    setTimeout(() => {
+      text.style.display = "none";
+    }, 3000);
+  }
+
+  // scroll animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".card, .cta").forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
 </body>
 </html>
+
