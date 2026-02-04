@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,6 +73,7 @@
       margin-bottom: 30px;
       opacity: 0;
       transform: translateY(30px);
+      transition: all 0.6s ease-out;
     }
 
     h2 {
@@ -93,7 +93,7 @@
       box-shadow: 0 18px 40px var(--shadow);
       opacity: 0;
       transform: translateY(30px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.6s ease-out;
     }
 
     .card:hover {
@@ -122,6 +122,7 @@
       box-shadow: 0 20px 45px var(--shadow);
       opacity: 0;
       transform: translateY(30px);
+      transition: all 0.6s ease-out;
     }
 
     .cta a,
@@ -150,11 +151,10 @@
       opacity: 0.6;
     }
 
-    /* Animation classes */
+    /* Animation class */
     .animate {
       opacity: 1 !important;
       transform: translateY(0) !important;
-      transition: all 0.6s ease-out;
     }
   </style>
 </head>
@@ -256,16 +256,15 @@
       document.body.classList.contains("light") ? "Dark mode" : "Light mode";
   }
 
-  // Staggered scroll animation
+  // Staggered scroll animation that works every time
   const observer = new IntersectionObserver((entries) => {
-    let delay = 0;
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
         setTimeout(() => {
           entry.target.classList.add("animate");
-        }, delay);
-        delay += 150; // stagger each box by 150ms
-        observer.unobserve(entry.target);
+        }, index * 150);
+      } else {
+        entry.target.classList.remove("animate"); // remove to re-trigger
       }
     });
   }, { threshold: 0.2 });
