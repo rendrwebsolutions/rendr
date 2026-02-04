@@ -73,7 +73,8 @@
       margin-bottom: 30px;
       opacity: 0;
       transform: translateY(30px);
-      transition: all 0.6s ease-out;
+      transition: all 0.4s ease-out;
+      cursor: pointer; /* indicate hover/click */
     }
 
     h2 {
@@ -93,11 +94,15 @@
       box-shadow: 0 18px 40px var(--shadow);
       opacity: 0;
       transform: translateY(30px);
-      transition: all 0.6s ease-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+      cursor: pointer; /* indicate hover/click */
     }
 
-    .card:hover {
-      transform: translateY(-6px);
+    .card:hover,
+    .card:active,
+    .highlight-box:hover,
+    .highlight-box:active {
+      transform: translateY(-8px);
       box-shadow: 0 28px 55px var(--shadow);
     }
 
@@ -122,7 +127,8 @@
       box-shadow: 0 20px 45px var(--shadow);
       opacity: 0;
       transform: translateY(30px);
-      transition: all 0.6s ease-out;
+      transition: all 0.4s ease-out;
+      cursor: pointer;
     }
 
     .cta a,
@@ -151,7 +157,7 @@
       opacity: 0.6;
     }
 
-    /* Animation class */
+    /* Animation class for scroll */
     .animate {
       opacity: 1 !important;
       transform: translateY(0) !important;
@@ -204,7 +210,6 @@
   </div>
 </section>
 
-<!-- PRICING SECTION -->
 <section>
   <h2>Pricing</h2>
   <div class="cards">
@@ -279,7 +284,7 @@
       document.body.classList.contains("light") ? "Dark mode" : "Light mode";
   }
 
-  // Staggered scroll animation for every time it comes into view
+  // Staggered scroll animation that triggers every time
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
@@ -287,7 +292,7 @@
           entry.target.classList.add("animate");
         }, index * 150);
       } else {
-        entry.target.classList.remove("animate"); // re-trigger on scroll
+        entry.target.classList.remove("animate");
       }
     });
   }, { threshold: 0.2 });
