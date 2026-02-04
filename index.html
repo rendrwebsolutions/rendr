@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +17,9 @@
     }
 
     body.light {
-      --bg: #ffffff;
-      --text: #000000;
-      --card: #ffffff;
+      --bg: #fff;
+      --text: #000;
+      --card: #fff;
       --shadow: rgba(0,0,0,0.15);
     }
 
@@ -148,15 +150,11 @@
       opacity: 0.6;
     }
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .show {
-      animation: fadeUp 0.8s ease forwards;
+    /* Animation classes */
+    .animate {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: all 0.6s ease-out;
     }
   </style>
 </head>
@@ -258,15 +256,21 @@
       document.body.classList.contains("light") ? "Dark mode" : "Light mode";
   }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
+  // Staggered scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    let delay = 0;
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add("show"), i * 120);
+        setTimeout(() => {
+          entry.target.classList.add("animate");
+        }, delay);
+        delay += 150; // stagger each box by 150ms
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.2 });
 
-  document.querySelectorAll(".card, .highlight-box, .cta").forEach(el => {
+  document.querySelectorAll(".highlight-box, .card, .cta").forEach(el => {
     observer.observe(el);
   });
 </script>
