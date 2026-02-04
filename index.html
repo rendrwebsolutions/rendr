@@ -204,6 +204,7 @@
   </div>
 </section>
 
+<!-- PRICING SECTION -->
 <section>
   <h2>Pricing</h2>
   <div class="cards">
@@ -278,7 +279,7 @@
       document.body.classList.contains("light") ? "Dark mode" : "Light mode";
   }
 
-  // Staggered scroll animation that works every time
+  // Staggered scroll animation for every time it comes into view
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
@@ -286,7 +287,7 @@
           entry.target.classList.add("animate");
         }, index * 150);
       } else {
-        entry.target.classList.remove("animate"); // remove to re-trigger
+        entry.target.classList.remove("animate"); // re-trigger on scroll
       }
     });
   }, { threshold: 0.2 });
@@ -298,5 +299,3 @@
 
 </body>
 </html>
-
-
