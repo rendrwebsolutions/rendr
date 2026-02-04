@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,6 @@
       line-height: 1.6;
     }
 
-    /* HEADER */
     header {
       padding: 20px 40px;
     }
@@ -32,10 +32,8 @@
       font-size: 26px;
       font-weight: bold;
       color: #000;
-      letter-spacing: 0.5px;
     }
 
-    /* HERO SMALL */
     .hero {
       max-width: 900px;
       margin: auto;
@@ -59,21 +57,52 @@
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
+      gap: 28px;
     }
 
     .card {
       background: #ffffff;
-      padding: 28px;
-      border-radius: 14px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.2);
       opacity: 0;
-      transform: translateY(25px);
-      transition: box-shadow 0.3s ease;
+      transform: translateY(30px);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .card:hover {
-      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 22px 45px rgba(0,0,0,0.28);
+    }
+
+    /* HOW IT WORKS SPECIAL */
+    .steps .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(95,227,230,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .steps .card:hover::before {
+      opacity: 1;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      background: #5FE3E6;
+      color: #000;
+      font-weight: bold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 18px;
     }
 
     /* CTA */
@@ -83,7 +112,7 @@
       padding: 60px 20px;
       border-radius: 20px;
       opacity: 0;
-      transform: translateY(25px);
+      transform: translateY(30px);
     }
 
     .cta a,
@@ -102,7 +131,6 @@
     .copied {
       margin-top: 12px;
       font-size: 14px;
-      color: #333;
       display: none;
     }
 
@@ -113,7 +141,6 @@
       color: #555;
     }
 
-    /* ANIMATIONS */
     @keyframes fadeUp {
       to {
         opacity: 1;
@@ -153,7 +180,7 @@
 <section>
   <h2>Our Services</h2>
   <div class="cards">
-    <div class="card"> 
+    <div class="card">
       <h3>Business Websites</h3>
       <p>Simple info websites with services, location, and contact details.</p>
     </div>
@@ -168,20 +195,28 @@
   </div>
 </section>
 
-<section>
+<section class="steps">
   <h2>How It Works</h2>
   <div class="cards">
     <div class="card">
-      <h3>1. Reach Out</h3>
-      <p>Tell us about your business and what you need.</p>
+      <div class="step-number">1</div>
+      <h3>Reach Out</h3>
+      <p>You tell us about your business, goals, and what you want customers to see.</p>
     </div>
     <div class="card">
-      <h3>2. We Build</h3>
-      <p>We design and improve your site with clean and simple layout.</p>
+      <div class="step-number">2</div>
+      <h3>Design & Build</h3>
+      <p>We design a clean layout, write the content, and build the site fast.</p>
     </div>
     <div class="card">
-      <h3>3. Go Live</h3>
-      <p>Your site is ready and customers can find you online.</p>
+      <div class="step-number">3</div>
+      <h3>Review</h3>
+      <p>You check everything and request small changes if needed.</p>
+    </div>
+    <div class="card">
+      <div class="step-number">4</div>
+      <h3>Go Live</h3>
+      <p>Your website goes online and customers can find you anytime.</p>
     </div>
   </div>
 </section>
@@ -213,14 +248,15 @@
     }, 3000);
   }
 
-  // scroll animation
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        setTimeout(() => {
+          entry.target.classList.add("show");
+        }, index * 120);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.2 });
 
   document.querySelectorAll(".card, .cta").forEach(el => {
     observer.observe(el);
@@ -229,5 +265,3 @@
 
 </body>
 </html>
-
-
